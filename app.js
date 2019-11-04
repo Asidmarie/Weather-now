@@ -13,7 +13,7 @@ app.use(express.static('./public'));
 // GET / 
 
 app.get('/', function (req, res) {
-  res.send('home.ejs');
+  res.render('home.ejs');
 })
  
 app.listen(3000, function(){
