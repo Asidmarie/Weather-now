@@ -1,6 +1,7 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const app = express()
- const bodyParser = require('body-parser')
+ 
 
 //setting view engine
 app.set('view engine', 'ejs');
@@ -14,10 +15,13 @@ app.use(bodyParser.urlencoded({extended: false}));
 // GET / 
 
 app.get('/', function (req, res) {
-  res.render('home.ejs');
+  res.render('home.ejs', {weather: 'coming soon' });
 });
-app.post("/whatever-we-want", function(req,res){
-  console.log(req)
+
+app.post("/", function(req,res){
+  let weatherNow = "the weather in " + req.body.city + "is 70 c";
+  let err = false
+  res.render('home.ejs', {weather: weatherNow, error: err });
 });
  
 app.listen(3000, function(){
